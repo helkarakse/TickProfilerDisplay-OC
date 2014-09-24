@@ -7,9 +7,9 @@
 ]]
 
 -- Libraries
-os.loadAPI("parser")
-os.loadAPI("functions")
-os.loadAPI("data")
+local parser = require("parser")
+local functions = require("functions")
+local data = require("data")
 
 -- Variables
 local monitor
