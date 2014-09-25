@@ -20,8 +20,8 @@
 -- fifth key is array for average entity
 
 -- Libraries
-os.loadAPI("json")
-os.loadAPI("functions")
+local json = require("json")
+local functions = require("functions")
 
 -- Variables
 local stringData, tableData, stringTps, tableSingleEntity, tableChunk, tableEntityByType, tableAverageCalls, stringUpdated
