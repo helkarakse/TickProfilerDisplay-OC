@@ -21,7 +21,6 @@
 
 -- Libraries
 local json = require("json")
-local functions = require("functions")
 
 -- Variables
 local stringData, tableData, stringTps, tableSingleEntity, tableChunk, tableEntityByType, tableAverageCalls, stringUpdated
@@ -58,22 +57,14 @@ function parseData(stringInput)
 		return false
 	else
 		stringData = stringInput
-		-- functions.debug("String data:", stringData)
 		jsonData = json.decode(stringData)
 		tableData = jsonData.result
---		functions.debug("Json decoded...")
 		stringTps = tableData.tps.tps
---		functions.debug("Tps assigned")
 		tableSingleEntity = tableData.single
---		functions.debug("Single assigned")
 		tableChunk = tableData.chunk
---		functions.debug("Chunk assigned")
 		tableEntityByType = tableData.type
---		functions.debug("Type assigned")
 		tableAverageCalls = tableData.call
---		functions.debug("Call assigned")
 		stringUpdated = tableData.tps.last_update
---		functions.debug("Last update assigned")
 		return true
 	end
 end
