@@ -89,7 +89,7 @@ local function displayData(id)
 	local yPos = 8
 
 	if (id == 1) then
-		functions.debug("Displaying single.")
+		-- functions.debug("Displaying single.")
 		local data = parser.getSingleEntities()
 		if (next(data) ~= nil) then
 			for i = 1, functions.getTableCount(data) do
@@ -117,7 +117,7 @@ local function displayData(id)
 		end
 	elseif (id == 2) then
 		-- id 2 = the chunk list
-		functions.debug("Displaying chunk.")
+		-- functions.debug("Displaying chunk.")
 		local data = parser.getChunks()
 		if (next(data) ~= nil) then
 			for i = 1, functions.getTableCount(data) do
@@ -145,7 +145,7 @@ local function displayData(id)
 		end
 	elseif (id == 3) then
 		-- id 3 = the type list
-		functions.debug("Displaying type.")
+		-- functions.debug("Displaying type.")
 		local data = parser.getEntityByTypes()
 		if (next(data) ~= nil) then
 			for i = 1, functions.getTableCount(data) do
@@ -169,7 +169,7 @@ local function displayData(id)
 		end
 	elseif (id == 4) then
 		-- id 4 = the call list
-		functions.debug("Displaying call.")
+		-- functions.debug("Displaying call.")
 		local data = parser.getAverageCalls()
 		if (next(data) ~= nil) then
 			for i = 1, functions.getTableCount(data) do
@@ -195,7 +195,7 @@ local refreshLoop = function()
 	while true do
 		local data = http.get(data.dataUrl)
 		if (data) then
-			functions.debug("Data retrieved from remote server.")
+			-- functions.debug("Data retrieved from remote server.")
 			-- re-parse the data
 			local text = data.readAll()
 			parser.parseData(text)
