@@ -22,6 +22,8 @@
 -- Libraries
 local json = require("json")
 
+local parser = {}
+
 -- Variables
 local stringData, tableData, stringTps, tableSingleEntity, tableChunk, tableEntityByType, tableAverageCalls, stringUpdated
 
@@ -52,7 +54,7 @@ local hexColor = {
 
 -- Main Functions
 -- Parses the json string and initializes each table variable. Returns true on successful parse, false on empty string passed.
-function parseData(stringInput)
+function parser.parseData(stringInput)
     if (stringInput == "") then
         return false
     else
@@ -70,19 +72,19 @@ function parseData(stringInput)
 end
 
 -- Last Updated
-function getUpdatedDate()
+function parser.getUpdatedDate()
     return stringUpdated
 end
 
 -- TPS
 -- Returns the exact tps value as listed in the profile
-function getExactTps()
+function parser.getExactTps()
     return stringTps
 end
 
 -- Rounds the tps value to given decimal places and returns it
 -- Fixed, but not accurately rounding the number (using strsub method)
-function getTps()
+function parser.getTps()
     local tps = getExactTps()
     if (tonumber(tps) ~= nil) then
         if (tonumber(tps) > 20)then
@@ -111,7 +113,7 @@ end
 -- Returns a table containing single entities that cause lag. 
 -- Each row is a table containing the following keys: 
 -- percent: percentage of time/tick, time: time/tick, name: name of entity, position: position of entity, dimension: formatted dimension text
-function getSingleEntities()
+function parser.getSingleEntities()
     local returnTable = {}
     
     if (type(tableSingleEntity) == "table") then
@@ -134,7 +136,7 @@ end
 -- Returns a table containing the chunks that cause lag.
 -- Each row is a table containing the following keys:
 -- percent: percentage of time/tick, time: time/tick, positionX: X coordinate of chunk, positionZ: Z coordinate of chunk, dimension: dimension of chunk
-function getChunks()
+function parser.getChunks()
     local returnTable = {}
     
     if (type(tableChunk) == "table") then
@@ -157,7 +159,7 @@ end
 -- Returns a table containing the types of entities causing the most lag
 -- Each row is a table containing the following keys:
 -- percent: percentage of time/tick, time: time/tick, type: the type of entity that is listed
-function getEntityByTypes()
+function parser.getEntityByTypes()
     local returnTable = {}
     
     if (type(tableEntityByType) == "table") then
@@ -179,7 +181,7 @@ end
 -- Each row is a table containing the following keys:
 -- name: name of entity, time: time/tick, calls: number of calls made
 
-function getAverageCalls()
+function parser.getAverageCalls()
     local returnTable = {}
     
     if (type(tableAverageCalls) == "table") then
@@ -198,7 +200,7 @@ end
 
 -- Miscellaneous Functions
 -- Returns the color for the percentage based on severity
-function getPercentColor(percent)
+function parser.getPercentColor(percent)
     local percentage = tonumber(percent)
     local percentageColor
     if (percentage >= 5) then
@@ -214,7 +216,7 @@ end
 
 -- Returns the color for the percentage based on severity
 -- Hex version for glasses
-function getPercentHexColor(percent)
+function parser.getPercentHexColor(percent)
     local percentage = tonumber(percent)
     local percentageColor
     if (percentage >= 5) then
@@ -229,7 +231,7 @@ function getPercentHexColor(percent)
 end
 
 -- Returns the color for the TPS based on severity
-function getTpsColor(tps)
+function parser.getTpsColor(tps)
     local tpsColor
     local tps = tonumber(tps)
     if (tps >= 18) then
@@ -243,7 +245,7 @@ function getTpsColor(tps)
     return tpsColor
 end
 
-function getTpsHexColor(tps)
+function parser.getTpsHexColor(tps)
     local tpsColor
     local tps = tonumber(tps)
     if (tps >= 18) then
@@ -256,3 +258,5 @@ function getTpsHexColor(tps)
     
     return tpsColor
 end
+
+return parser
